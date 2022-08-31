@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/start-page.css')}}">
+    <title>Start page</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="img">
+            <img src="../static/img/login-office.jpeg" alt="">
+        </div>
+        <div class="form">
+            <h2>Welcome To <span>ARVS</span> </h2>
+            <p>Select your login method</p>
+            <div class="btn-row">
+                <button class="btn">
+                    <a href="/Authlogin">Authority</a>
+                </button>
+                <button class="btn">
+                    <a href="/login">Employee</a>
+                </button>
+            </div>
+            <p style="width:100%; text-align:center;">
+                New here? <a href="/signup">Create account now</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

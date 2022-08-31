@@ -1,0 +1,68 @@
+{% extends "AuthDashboardLayout.html" %}
+{% block body %}
+<main class="h-full overflow-y-auto">
+    <div class="container px-6 mx-auto grid" style="padding:2%;">
+        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            Employee Details
+          </h2>
+        <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+            <div class="w-full overflow-x-auto">
+                <table class="w-full whitespace-no-wrap">
+                    <thead>
+                        <tr
+                            class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                            <th class="px-4 py-3">Name</th>
+                            <th class="px-4 py-3">Email</th>
+                            <th class="px-4 py-3">Department</th>
+                            <th class="px-4 py-3">Designation</th>
+                            <th class="px-4 py-3">Contact</th>
+                            <th class="px-4 py-3">Emergency Contact</th>
+                            <th class="px-4 py-3">Leave count
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                        {% for one in list_info %}
+                        <tr class="text-gray-700 dark:text-gray-400">
+                            <td class="px-4 py-3">
+                              <div class="flex items-center text-sm">
+                                <!-- Avatar with inset shadow -->
+                                <div >
+                                  <p class="font-semibold">{{one[2]}}</p>
+                                  <p class="text-xs text-gray-600 dark:text-gray-400">
+                                    emp id: {{one[0]}}
+                                  </p>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="px-4 py-3 text-sm"> 
+                                {{one[1]}}
+                              </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{one[5]}}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{one[4]}}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{one[6]}}
+                            </td>
+                            <td class="px-4 py-3 text-sm"> 
+                                {{one[7]}}
+                            </td>
+                            <td class="px-4 py-3 text-sm"> 
+                                
+                                <div class="myDIV">Click here.</div>
+                                <div class="hide">Casual Leave:{{one[9]}}<br>Sick Leave:{{one[10]}}<br>Baby Care:{{one[11]}}<br>Breavement Leave:{{one[12]}}</div>
+                                <!-- {{one[9]}}, {{one[10]}}, {{one[11]}}, {{one[12]}} -->
+                            </td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</main>
+{% endblock %}

@@ -1,0 +1,9 @@
+MPLOYEE LIST:  [(7, 'Sick Leave', 'Sick ', datetime.date(2021, 5, 13), datetime.date(2021, 5, 14), 1, 'Approved', 1, 1, 'k@gm.com', 'Khushal', '1234', 'Assistant Buyer', 'Fashion', 2147483647, 2147483647)]
+                 0       1          2             3                           4                    5      6       7  8      9           10       11          12
+
+                 Name 10
+                 emp_id 7
+                 start 3
+                 end 4
+                 Days 5 
+                 dept 12                                                             

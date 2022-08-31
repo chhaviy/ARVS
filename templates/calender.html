@@ -1,0 +1,388 @@
+<html :class="{ 'theme-dark': dark }" x-data="data()" lang="en" class="theme-dark"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation Schedule</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/tailwind.output.css">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer=""></script>
+    <script src="../static/js/init-alpine.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer=""></script>
+    <script src="../static/js/charts-lines.js" defer=""></script>
+    <script src="../static/js/charts-pie.js" defer=""></script>
+    <script defer src="../static/js/popup.js"></script>
+    <style>
+        #maindiv {
+            padding: 8px;
+            margin: 8px;
+            border-radius: 8px;
+            width: 33rem;
+            border: 2px solid rgb(75, 75, 75);
+        }
+        #maindiv2 {
+            padding: 8px;
+            margin: 8px;
+            border-radius: 8px;
+            width: 61rem;
+            border: 2px solid rgb(75, 75, 75);
+        }
+        #div1{
+            border-radius: 8px;
+            border: 6px rgb(49, 48, 48) double;
+            background-color: #9f98e9;
+            padding: 4px;
+            width: 31rem;
+            height:25rem;
+        }
+        #div2{
+            border-radius: 8px;
+            border-radius: 8px;
+            border: 6px rgb(49, 48, 48) double;
+            background-color: #9f98e9;
+            padding: 4px;
+            width: 31rem;
+            margin-top: 13px;
+            height: 19rem
+        }
+        #div3{
+            border-radius: 8px;
+            
+            padding: 4px;
+            width: 59rem;
+            height:25rem;
+        }
+        #div4{
+            border-radius: 8px;
+            
+            padding: 4px;
+            width: 59rem;
+            margin-top: 13px;
+            height: 19rem
+        }
+        #table{
+            width : 30rem
+        }
+        #table1{
+            width : 58rem
+        }
+        #date{
+            display: inline;
+            color: #9e9e9e
+        }
+        #eventfinderbtn{
+            display: inline;
+            background-color: #5a5c56;
+        }
+        #fbox{
+            background-color: #dd4646;
+        }
+
+    </style>
+  </head>
+  <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
+  <body  data-new-gr-c-s-check-loaded="14.984.0" data-gr-ext-installed="">
+    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VACATION SCHEDULE
+      </h2>
+    </header>
+    <div class="flex h-screen bg-gray-50 dark:bg-gray-900" :class="{ 'overflow-hidden': isSideMenuOpen }">
+
+        <aside id="maindiv"class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
+            <div id="div1" class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0 py-4 text-gray-500 dark:text-gray-400">
+                <div id = "fbox"class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple" href="/calender" target="_blank">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                          </svg>
+                      <span> &nbsp;&nbsp;Events</span>
+                    </div>
+                    <button style="display: inline;"class="flex items-center justify-between px-2 py-0.5 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-full active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple" aria-label="Edit" >
+                        <a  href=""></a>&#8635;</a>
+                      </button>
+                </div>
+                <table id="table" class="w-full whitespace-no-wrap">
+                    <thead>
+                      <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">Event</th>
+                        <th class="px-4 py-3">Days</th>
+                        <th class="px-4 py-3">Description</th>
+                        <!-- <th class="px-4 py-3">End Date</th> -->
+                        <!-- <th class="px-4 py-3">Days</th>
+                        <th class="px-4 py-3">Description</th>
+                        <th class="px-4 py-3">Status</th> -->
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                      {% for eve in event%}
+                            <tr class="text-gray-700 dark:text-gray-400">
+                              <td class="px-4 py-3">
+                                <div class="flex items-center text-sm">
+                                  <!-- Avatar with inset shadow -->
+                                  <div >
+                                    <p class="font-semibold">{{eve.justtitle}}</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                                    </p>
+                                  </div>
+                                </div>
+                            </td>
+                              {%if eve.start_event == eve.end_event%}
+                              <td class="px-4 py-3 text-sm">
+                                {{eve.start_event}}
+                              </td>
+                              {% else %}
+                              <td class="px-4 py-3 text-sm">
+                                {{eve.start_event}} to {{eve.end_event}}
+                              </td>
+                              {% endif %}
+                              <!-- <td class="px-4 py-3 text-sm">
+                                {{leaveDOTdays}}
+                              </td> -->
+                              <td class="px-4 py-3 text-sm">
+                                <div class="mt-7">
+                                    <p class="text-gray-800 cursor-pointer mt-10 md:block" style="color: whitesmoke;">Click to view</p>
+                                  </div>
+                                  <div class="popover transition hidden duration-150 ease-in-out ml-10 w-10/12 md:w-2/5">
+                                    <div class=" bg-white rounded shadow-2xl flex-wrap"
+                                      style="width:250px; height: auto; overflow-x: scroll;  word-wrap: break-word; overflow-wrap: break-word;">
+            
+                                      <p class="text-gray-600 font-normal text-lg modal-text " style="width:auto;">
+                                        {{eve.title}}
+                                      </p>
+            
+                                    </div>
+                                  </div>
+                               </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+            <div id="div2">
+                <div id="fbox" class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple" href="/calender" target="_blank">
+                    <div  class="flex items-center">
+                        <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                          </svg>
+                      <span > &nbsp;&nbsp;Events by Date</span>
+                      <!-- <form
+                        class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+                        method="POST"
+                        action="/leaveSubmit"> -->
+                    </div>
+                </div>
+                <form style="background-color: #9f98e9;" 
+              class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+              method="POST"
+              action="/eventfinder">
+                <span style=" color: black;" class="text-gray-700 dark:text-gray-400">
+                  Event Date :
+                </span>
+                <input type="date" name="seventdate" value="seventdate">
+                <button id= "eventfinderbtn" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    Submit<span class="ml-2" aria-hidden="true"></span></button>
+              </form>
+
+            <table id="table" class="w-full whitespace-no-wrap">
+                <thead>
+                  <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                    <th class="px-4 py-3">Event</th>
+                    <th class="px-4 py-3">Days</th>
+                    <th class="px-4 py-3">Description</th>
+                    <!-- <th class="px-4 py-3">End Date</th> -->
+                    <!-- <th class="px-4 py-3">Days</th>
+                    <th class="px-4 py-3">Description</th>
+                    <th class="px-4 py-3">Status</th> -->
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                  {% for even in event1 %}
+                        <tr class="text-gray-700 dark:text-gray-400">
+                          <td class="px-4 py-3">
+                            <div class="flex items-center text-sm">
+                              <!-- Avatar with inset shadow -->
+                              <div >
+                                <p class="font-semibold">{{even.justtitle}}</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">
+                                </p>
+                              </div>
+                            </div>
+                        </td>
+                          {%if even.start_event == even.end_event%}
+                          <td class="px-4 py-3 text-sm">
+                            {{even.start_event}}
+                          </td>
+                          {% else %}
+                          <td class="px-4 py-3 text-sm">
+                            {{even.start_event}} to {{even.end_event}}
+                          </td>
+                          {% endif %}
+                          <!-- <td class="px-4 py-3 text-sm">
+                            {{leaveDOTdays}}
+                          </td> -->
+                          <td class="px-4 py-3 text-sm">
+                            <div class="mt-7">
+                                <p class="text-gray-800 cursor-pointer mt-10 md:block" style="color: whitesmoke;">Click to view</p>
+                              </div>
+                              <div class="popover transition hidden duration-150 ease-in-out ml-10 w-10/12 md:w-2/5">
+                                <div class=" bg-white rounded shadow-2xl flex-wrap"
+                                  style="width:250px; height: auto; overflow-x: scroll;  word-wrap: break-word; overflow-wrap: break-word;">
+        
+                                  <p class="text-gray-600 font-normal text-lg modal-text " style="width:auto;">
+                                    {{even.title}}
+                                  </p>
+        
+                                </div>
+                              </div>
+                           </td>
+                           
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </aside>
+          <!-- New Aside for employee  -->
+
+          <aside id="maindiv2" class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
+              <!-- for employee by emp_id -->
+            <div id="div3" class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0 py-4 text-gray-500 dark:text-gray-400">
+                <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple" href="/calender" target="_blank">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                          </svg>
+                      <span> &nbsp;&nbsp;Employee Leave</span>
+                    </div>
+                </div>
+                <form class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" method="POST" action="/emplofinder">
+                    <span class="text-gray-700 dark:text-gray-400">
+                     Employee id :
+                    </span>
+                    <input type="text" name="emplo">
+                    <button id="eventfinderbtn" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                        Find<span class="ml-2" aria-hidden="true"></span></button>
+                    </form>
+                <table id="table1" class="w-full whitespace-no-wrap">
+                    <thead>
+                      <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">Name</th>
+                        <th class="px-4 py-3">Start Date</th>
+                        <th class="px-4 py-3">End Start</th>
+                        <th class="px-4 py-3">Department</th>
+
+                        <!-- <th class="px-4 py-3">End Date</th> -->
+                        <!-- <th class="px-4 py-3">Days</th>
+                        <th class="px-4 py-3">Description</th>
+                        <th class="px-4 py-3">Status</th> -->
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                        {% for even in emp_list2 %}
+                              <tr class="text-gray-700 dark:text-gray-400">
+                                <td class="px-4 py-3">
+                                  <div class="flex items-center text-sm">
+                                    <!-- Avatar with inset shadow -->
+                                    <div >
+                                      <p class="font-semibold">{{even[10]}}</p>
+                                      <p class="text-xs text-gray-600 dark:text-gray-400">
+                                          emp id: {{even[7]}}
+                                      </p>
+                                    </div>
+                                  </div>
+                              </td>
+                                <td class="px-4 py-3 text-sm">
+                                  {{even[3]}}
+                                </td>
+                                <td class="px-4 py-3 text-sm">
+                                  {{even[4]}}
+                                </td>
+                                <!-- <td class="px-4 py-3 text-sm">
+                                  {{even[12]}}
+                                </td> -->
+                                <td class="px-4 py-3 text-sm">
+                                  {{even[14]}}
+                                </td>
+                                 
+                              </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+            </div>
+
+            <!-- Employee by date -->
+
+            <div id="div4">
+                <div class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple" href="/calender" target="_blank">
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                          </svg>
+                      <span> &nbsp;&nbsp; Absent employee on Date</span>
+                      <!-- <form
+                        class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
+                        method="POST"
+                        action="/leaveSubmit"> -->
+                    </div>
+                </div>
+                <form class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" method="POST" action="/emplodatefinder">
+                <span class="text-gray-700 dark:text-gray-400">
+                 Date :
+                </span>
+                <input  style="display: inline;" type="date" name="emplodate">
+                <button id="eventfinderbtn" class="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    Find<span class="ml-2" aria-hidden="true"></span></button>
+                </form>
+                <!-- Refresh -->
+                <table id="table1" class="w-full whitespace-no-wrap">
+                    <thead>
+                      <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+                        <th class="px-4 py-3">Name</th>
+                        <!-- <th class="px-4 py-3">Start Date</th> -->
+                        <th class="px-4 py-3">End Date</th>
+                        <th class="px-4 py-3">Days</th>
+                        <th class="px-4 py-3">Department</th>
+                        <!-- <th class="px-4 py-3">End Date</th> -->
+                        <!-- <th class="px-4 py-3">Days</th>
+                        <th class="px-4 py-3">Description</th>
+                        <th class="px-4 py-3">Status</th> -->
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+                      {% for even in emp_list %}
+                            <tr class="text-gray-700 dark:text-gray-400">
+                              <td class="px-4 py-3">
+                                <div class="flex items-center text-sm">
+                                  <!-- Avatar with inset shadow -->
+                                  <div >
+                                    <p class="font-semibold">{{even[10]}}</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                                        emp id: {{even[7]}}
+                                    </p>
+                                  </div>
+                                </div>
+                            </td>
+                              <!-- <td class="px-4 py-3 text-sm">
+                                {{even[3]}}
+                              </td> -->
+                              <td class="px-4 py-3 text-sm">
+                                {{even[4]}}
+                              </td>
+                              <td class="px-4 py-3 text-sm">
+                                {{even[5]}}
+                              </td>
+                              <td class="px-4 py-3 text-sm">
+                                {{even[14]}}
+                              </td>
+                               
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+          </aside>      
+      </div>
+    </div>
+    
+</body></html>

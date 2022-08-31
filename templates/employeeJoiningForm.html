@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+{% block body %}
+<main class="h-full overflow-y-auto">
+    <div class="container px-6 mx-auto grid" style="padding: 3%;">
+        <form class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" action="/employeejoiningform"
+            method="POST">
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                Employee Joining Form
+            </h2>
+            <hr class="my-8" />
+            <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+                Employee Personal Details
+            </h4>
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Your Full name</span>
+                <input type="type"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    placeholder="" name="emp_name" />
+            </label>
+            <br>
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Gender</span>
+                <input type="type"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    placeholder="" name="emp_gender" />
+            </label>
+            <br>
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Date of Birth</span>
+                <input type="type"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    placeholder="DD/MM/YYYY" name="emp_dob" />
+            </label>
+            <br>
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Contact No</span>
+                <input type="numeric"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    placeholder="" name="emp_contact" max="10" />
+            </label>
+            <br>
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Marital Status</span>
+                <input type="type"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    placeholder="" name="emp_status" />
+            </label>
+            <br>
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Blood Group</span>
+                <input type="type"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    placeholder="" name="emp_bloodgroup" />
+            </label>
+            <br>
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Nationality</span>
+                <input type="type"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    placeholder="" name="emp_nation" />
+            </label>
+            <br>
+            <label class="block mt-4 text-sm">
+                <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+                    Address
+                </h4>
+                <textarea
+                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                    rows="3" placeholder="Enter your address here." name="emp_address"></textarea>
+            </label>
+            <br>
+            <hr class="my-8" />
+            <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
+                Employee Company Details
+            </h4>
+            <br>
+            <h4 class="mb-4 text-lg text-gray-600 dark:text-gray-300">
+                Employee ID Will Be - {{id}}
+            </h4>
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Department</span>
+                <input type="type"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    placeholder="" name="emp_department" />
+            </label>
+            <br>
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Designation</span>
+                <input type="type"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    placeholder="" name="emp_designation" />
+            </label>
+            <br>
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Joined On</span>
+                <input type="type"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    placeholder="" name="emp_joinedon" />
+            </label>
+            <br>
+            <label class="block mt-4 text-sm">
+                <span class="text-gray-700 dark:text-gray-400">Reports to </span>
+                <input type="type"
+                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    placeholder="Id" name="emp_reportsto" />
+            </label>
+            <br>
+            <span class="text-gray-700 dark:text-gray-400">
+                By filling this form you agree to All Our TERMS AND CONDITIONS.
+                All your details will be kept secure and will only be visible to head authorities.
+            </span>
+            <br> <br>
+            <button
+                class=" px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                Submit<span class="ml-2" aria-hidden="true"></span></button>
+        </form>
+    </div>
+</main>
+{% endblock %}

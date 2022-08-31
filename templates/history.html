@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block body %}
+  
+
+<!-- ################### -->
+<div class="container px-6 mx-auto grid">
+    <h3 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        Leave History
+    </h3>
+
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+      <div class="w-full overflow-x-auto">
+        <table class="w-full whitespace-no-wrap">
+          <thead>
+            <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+              <th class="px-4 py-3">Description</th>
+              <th class="px-4 py-3">Start Date</th>
+              <th class="px-4 py-3">End Date</th>
+              <th class="px-4 py-3">Days</th>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3">Unpaid</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+            {% for leave in lv_history%}
+
+              <!-- if leave.status = null then show value else skip -->
+
+                <tr class="text-gray-700 dark:text-gray-400">
+                    <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                            <!-- Avatar with inset shadow -->
+                            <div >
+                                <p class="font-semibold">{{leave.description}}</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">
+                                    {{leave.TOL}}
+                                </p>
+                            </div>
+                        </div>
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            {{leave.start_date}}
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            {{leave.end_date}}
+                        </td>
+                        <td class="px-4 py-3 text-sm">
+                            {{leave.days}}
+                        </td>
+                        {% if leave.status == 'Approved'%}
+                        <td class="px-4 py-3 text-xs">
+                          <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
+                            Approved
+                          </span>
+                        </td>
+                        {% elif leave.status == 'Rejected' %}
+                        <td class="px-4 py-3 text-xs">
+                          <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">
+                            Rejected
+                          </span>
+                        </td>
+                        {% else %}
+                        <td class="px-4 py-3 text-xs">
+                          <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700">
+                            Pending
+                          </span>
+                        </td>
+                        {% endif %}
+                        
+                        {% if leave.pay is none%}
+                        <td class="px-4 py-3 text-sm"> 
+                          No
+                        </td>
+                        {% else %}
+                        <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                            <div >
+                                <p class="font-semibold">Yes</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">
+                                  ₹ {{leave.pay}}
+                                </p>
+                            </div>
+                        </div>
+                        </td>
+                        {% endif %}
+                    </tr>        
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    
+</div>       
+{% endblock %}
+
